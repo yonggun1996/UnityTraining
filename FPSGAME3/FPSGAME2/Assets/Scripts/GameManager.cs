@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     PlayerMove player;//플레이어의 체력을 가져오기 위해 선언
     public static GameManager gm;
     public GameObject gameLabel;
-    Text gameText;
+    public Text gameText;
 
     private void Awake()
     {
@@ -54,10 +54,11 @@ public class GameManager : MonoBehaviour
     {
         if(player.hp <= 0)
         {
-            gameText.text = "Game Over";
+            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0);//플레이어 애니메이션을 멈춘다
             gameLabel.SetActive(true);
-            gameText.color = new Color32(255, 0, 0, 0);
-
+            gameText.text = "Game Over";
+            gameText.color = new Color32(255, 0, 0, 255);
+            print("Game Over");
             gState = GameState.GameOver;
         }
     }

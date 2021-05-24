@@ -15,10 +15,12 @@ public class PlayerMove : MonoBehaviour
     int maxHp = 20;
     public Slider hpSlider;
     public GameObject hitEffect;
+    Animator anim;//애니메이터 변수
     
     private void Start()
     {
         cc = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,9 @@ public class PlayerMove : MonoBehaviour
         //2. 이동 방향 설정
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized; // 정규화
+
+        anim.SetFloat("MoveMotion", dir.magnitude);
+
        // 3. 이동속도에 맞춰 이동한다. p =p0 + vt
         dir = Camera.main.transform.TransformDirection(dir);
         //transform.position += dir * moveSpeed * Time.deltaTime;

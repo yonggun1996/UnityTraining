@@ -10,9 +10,12 @@ public class PlayerFire : MonoBehaviour
     public GameObject bulletEffect; // 피격 이펙트 오브젝트
     ParticleSystem ps; // 피격 이펙트 파티클 시스템
     public int weaponPower = 5;//총알 공격력
+
+    Animator anim;
     private void Start()
     {
         ps = bulletEffect.GetComponent<ParticleSystem>();
+        anim = GetComponentInChildren<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -32,6 +35,10 @@ public class PlayerFire : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         { 
+            if(anim.GetFloat("MoveMotion") == 0)
+            {
+                anim.SetTrigger("Attack");
+            }
             //레이를 생성한 후 발사될 위ㅣ와 진행 방향을 설정함
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hitInfo = new RaycastHit();
