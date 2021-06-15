@@ -18,3 +18,35 @@
   -코루틴 함수구문 : IEnumerator 함수이름 (인자값)
   -코루틴 리턴 : yield return 으로 시작하는 구문들이다.
   
+  ```C#
+  IEnumerator PlayerHitEffect()
+    {
+        hitEffect.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        hitEffect.SetActive(false);
+    }
+    ```
+    
+이 코드는 hiteffect를 0.3초동안 활성화 한 후 비활성화로 바꾸는 코드입니다.
+
+```C#
+if (hp > 0)
+{
+    StartCoroutine(PlayerHitEffect());
+}
+```
+
+이렇게 PlayerHitEffent()를 호출해 코루틴 함수를 실행합니다.
+  
+- 기말고사 과제물
+자세한 내용은 해당 ppt를 참고하시면 됩니다. 
+[2021년 기말고사 게임계획서_2021531010 박용건.pptx](https://github.com/yonggun1996/UnityTraining/files/6652969/2021._2021531010.pptx)
+
+또한 Report 폴더를 열어 내용을 확인할 수 있습니다.
+
+요구사항 1 : 배경 꾸미기
+요규사항 2 : 게임 난이도 조절
+요구사항 3 : 총앨 개수 제한, UI 구현
+요구사항 4 : 아이템 추가
+요구사항 5 : 씬 추가
+요구사항 6 : 그 외 내가 추가하고 싶은 기능 추가하기
